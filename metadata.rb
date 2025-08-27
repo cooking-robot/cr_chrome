@@ -1,11 +1,11 @@
-name 'chrome'
-maintainer 'Dennis Hoer'
-maintainer_email 'dennis.hoer@gmail.com'
+name 'cr_chrome'
+maintainer 'Remi BONNET'
+maintainer_email 'bonnet@fanaticalhelp.com'
 license 'MIT'
 description 'Installs/Configures Chrome browser'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-source_url 'https://github.com/dhoer/chef-chrome'
-issues_url 'https://github.com/dhoer/chef-chrome/issues'
+source_url 'https://github.com/cooking-robot/cr_chrome'
+issues_url 'https://github.com/cooking-robot/cr_chrome/issues'
 version '4.0.2'
 
 chef_version '>= 12.14'

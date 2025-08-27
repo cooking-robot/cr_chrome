@@ -1,12 +1,12 @@
 case node['platform_family']
 when 'windows'
-  include_recipe 'chrome::msi'
+  include_recipe '::msi'
 when 'mac_os_x'
-  include_recipe 'chrome::dmg'
+  include_recipe '::dmg'
 when 'rhel', 'fedora'
-  include_recipe 'chrome::yum'
+  include_recipe '::yum'
 when 'debian'
-  include_recipe 'chrome::apt'
+  include_recipe '::apt'
 else
   Chef::Log.warn('Chrome cannot be installed on this platform using this cookbook.')
 end

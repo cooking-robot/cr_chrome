@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.0 2025-08-21
+
+- Forking for Cooking Robot
+- Add chrome_policy resource
+
 ## 4.0.2 2017-06-15
 
 - Adding the chefignore to make our internal chef-guard happy

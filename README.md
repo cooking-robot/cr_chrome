@@ -1,18 +1,8 @@
-# Chrome Cookbook
-
-[![Cookbook Version](http://img.shields.io/cookbook/v/chrome.svg?style=flat-square)][cookbook]
-[![linux](http://img.shields.io/travis/dhoer/chef-chrome/master.svg?label=linux&style=flat-square)][linux]
-[![osx](http://img.shields.io/travis/dhoer/chef-chrome/macosx.svg?label=macosx&style=flat-square)][osx]
-[![win](https://img.shields.io/appveyor/ci/dhoer/chef-chrome/master.svg?label=windows&style=flat-square)][win]
-
-[cookbook]: https://supermarket.chef.io/cookbooks/chrome
-[linux]: https://travis-ci.org/dhoer/chef-chrome
-[osx]: https://travis-ci.org/dhoer/chef-chrome/branches
-[win]: https://ci.appveyor.com/project/dhoer/chef-chrome
-
 This cookbook installs Google Chrome browser (https://www.google.com/chrome/) at compile time, provides 
-`chrome_version` library method  to retrieve Chrome version installed, and provides `master_preferences` resource
-to set user preferences.
+`chrome_version` library method  to retrieve Chrome version installed, and provides `master_preferences` and `chrome_policy` resources
+to set user preferences and policies.
+
+This project is a part of Cooking Robot group. It's a fork of a great project: https://github.com/dhoer/chef-chrome.
 
 ## Requirements
 
@@ -25,9 +15,13 @@ Chef 12.14+
 - Mac OS X
 - Windows
 
-### Cookbooks
+### Recipes
 
 - dmg - used by Mac OS X platform 
+- apt - used by Debian familiy
+- msi - used by Windows family
+- yum - used by RedHat Family
+- default - Call another recipe for current OS
 
 ## Usage
 
@@ -52,6 +46,31 @@ allow_any_instance_of(Chef::Recipe).to receive(:chrome_version).and_return('50.0
 
 See [attributes/default.rb](https://github.com/dhoer/chef-chrome/blob/master/attributes/default.rb) for complete list 
 of attributes.
+
+## chrome_policy
+
+Manage chrome policies for administrators.
+[More info...](https://chromeenterprise.google/policies/)
+
+### Resource Attributes
+
+- `name` - The name of the policy
+- `value` - Value of the policy
+
+### Actions
+
+Action can be `:managed` or `:recommanded`. Managed policy is enforced. Recommanded policy is set by default but
+the user can change theses policies. 
+
+### Exemples
+
+The following resource configure the home page. See [Chrome documentation](https://chromeenterprise.google/policies/#HomepageLocation).
+
+```ruby
+chrome_policy 'HomepageLocation' do
+  value 'https://mycompany.com/'
+end
+```
 
 ## master_preferences 
 
@@ -122,15 +141,3 @@ Cookbook Matchers
 
 - master_preferences_chrome(name)
 
-## Getting Help
-
-- Ask specific questions on [Stack Overflow](http://stackoverflow.com/search?q=google-chrome+chef).
-- Report bugs and discuss potential features in [Github issues](https://github.com/dhoer/chef-chrome/issues).
-
-## Contributing
-
-Please refer to [CONTRIBUTING](https://github.com/dhoer/chef-chrome/blob/master/CONTRIBUTING.md).
-
-## License
-
-MIT - see the accompanying [LICENSE](https://github.com/dhoer/chef-chrome/blob/master/LICENSE.md) file for details.

@@ -4,9 +4,9 @@ apt_repository 'google-chrome' do
   distribution 'stable'
   components %w(main)
   key node['chrome']['apt_key']
-  action :nothing
-end.run_action(:add)
+  action :add
+end
 
 package "google-chrome-#{node['chrome']['track']}" do
-  action :nothing
-end.run_action(:install)
+  action :install
+end
